@@ -13,7 +13,38 @@ const logDriversByHometown = function (drivers, location) {
 };
 
 const driversByRevenue = function (drivers) {
-  drivers.sort(function (a,b){
+  const sortedDrivers = [...drivers]
+  return sortedDrivers.sort(function (a,b){
     return a.revenue - b.revenue;
   });
+};
+
+const driversByName = function (drivers) {
+
+  const sortedDrivers = [...drivers]
+
+  return sortedDrivers.sort(function(a, b){
+    return a.name.localeCompare(b.name);
+  })
+
+  return sortedDrivers
+};
+
+const totalRevenue = function (drivers) {
+    const newDrivers = [...drivers];
+
+    const sumRevenues = function (agg, el, i , drivers){
+      return agg + el.revenue
+    };
+
+    return newDrivers.reduce(sumRevenues, 0)
+
+};
+
+const averageRevenue = function (drivers) {
+  const newDrivers = [...drivers];
+
+    const totalRev = totalRevenue(drivers)
+
+    return totalRev / drivers.length;
 };
